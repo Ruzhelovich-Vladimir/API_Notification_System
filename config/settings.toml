@@ -1,0 +1,21 @@
+#
+# BOT_TOKEN = "BOT_TOKEN"
+#
+# SQL = """select * from tbl
+# """
+
+LOG_FILE = "API_MV_Notifications.log"
+
+# [[CONTROL_SUPPLIER]]
+# supplier_name = 'supplier_name'
+# base_url="https://adminer/"
+# supplier_id = 0
+# server = "base_url"
+# db = "db"
+# ns = "ns"
+# login = "login"
+# password = "password"
+# chats = [
+#             "chat"
+#            ]
+
