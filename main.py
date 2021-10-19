@@ -1,3 +1,4 @@
+
 from config.config import settings
 
 import log
@@ -23,12 +24,12 @@ if __name__ == '__main__':
         orders = Request(control_supplier).run()
 
         # Подготовка сообщения
-        text = f'Новые уведомления по {control_supplier["supplier_name"]}:'
+        text = f'УВЕДОМЛЕНИЯ {control_supplier["supplier_name"]}:'
         for inx, order in enumerate(orders):
             text_order = '\n'.join([f'{key.capitalize()}: {value}' for key, value in order.items()])
             text = f'{text}\n{"*"*10}Уведомление №{inx+1}{"*"*10}\n{text_order}'
 
         # Отправка сообщение в группы телеграмм
-        if text != f'Новые уведомления по {control_supplier["supplier_name"]}:':
+        if text != f'УВЕДОМЛЕНИЯ {control_supplier["supplier_name"]}:':
             for chat in control_supplier["chats"]:
                 TelegramClass(BOT_TOKEN).send_to_chat(f'{chat}', text)
