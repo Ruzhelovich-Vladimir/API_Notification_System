@@ -1,4 +1,8 @@
 # import requests
+from os import getcwd
+from os.path import join
+
+from requests import get
 from telegram import Bot, ParseMode
 import sys
 
@@ -9,7 +13,7 @@ class TelegramClass:
 
         self._bot = Bot(token)
 
-    def send_to_chat(self, chat, msg):
+    def send_to_chat(self, chat, msg, path):
 
         parse_mode = ParseMode.MARKDOWN
         disable_web_page_preview = True
@@ -18,9 +22,13 @@ class TelegramClass:
         try:
             # logger.debug("Message to send:(chat:%s,text:%s,parse_mode:%s,disable_preview:%s,keyboard:%s, reply_to_message_id:%s" %
             #                 (chat_id, msg[0], parse_mode, disable_web_page_preview, msg[1], reply_to_message_id))
-            self._bot.send_message(chat_id=str(chat), text=msg, parse_mode=parse_mode,
-                                   disable_web_page_preview=disable_web_page_preview,
-                                   reply_to_message_id=reply_to_message_id)
+            if msg:
+                reply_to_message_id = self._bot.send_message(chat_id=str(chat), text=msg, parse_mode=parse_mode,
+                                       disable_web_page_preview=disable_web_page_preview,
+                                       reply_to_message_id=reply_to_message_id)
+
+            self._bot.send_photo(str(chat), photo=open(path, 'rb'))
+
             # logger.debug("Message sent OK:(chat:%s,text:%s,parse_mode:%s,disable_preview:%s,reply_keyboard:%s, reply_to_message_id:%s" %
             #                 (chat_id, msg[0], parse_mode, disable_web_page_preview, msg[1], reply_to_message_id))
         except:
@@ -53,5 +61,7 @@ if __name__ == "__main__":
 | Доля каталогов в базе < 50.00% |               17 | Триал Восток - Сады придонья |                            471 |                        0 |       0.00%        |                248 |
 </pre>
 """
+    msg = "Отчёт"
+    path = "tmp/report.png"
     TelegramClass('1835821241:AAFkxmZzXWMN4m8veOl3RDDJo8HLvRpGFO0').send_to_chat(
-        '-1001366099186', msg)
+        '-1001366099186', msg, path)
