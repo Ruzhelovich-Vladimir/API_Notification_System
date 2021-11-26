@@ -1,5 +1,4 @@
 import os.path
-
 from config.config import settings
 
 import log

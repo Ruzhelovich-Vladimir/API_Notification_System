@@ -18,11 +18,12 @@ USER_AGENT = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Ge
 список словарей результата запроса [{"наименование поля":значение,..},...]
 """
 
+
 class Request:
 
     def __init__(self, request):
 
-        #Запрос
+        # Запрос
         self.request = request
         # Создаём сессию
         self.__session = Session()
@@ -120,7 +121,7 @@ class Request:
         rows = soup.findAll("tr")
 
         # Получение заголовок таблицы
-        if len(rows)>0:
+        if len(rows) > 0:
             headers = [col.text for col in rows[0]]
             rows.pop(0)
             # Получение результата запроса
